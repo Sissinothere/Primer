@@ -29,30 +29,27 @@ void section5_2()
     else
     {
         cout << "please enter ISBN number, quantity, price: ";
-        while(copy > 0)
+        cin >> currItem;            //first time record ISBN, use to compare ISBN with item
+        occur = 1;
+        --copy;
+        while(copy>0)          // second time record ISBN, compare with currItem.
         {
-            cin >> currItem;            //first time record ISBN, use to compare ISBN with item
-            occur = 1;
-            --copy;
-            while(copy>0)          // second time record ISBN, compare with currItem.
+            cin >> item;
+            if(currItem.getISBN() == item.getISBN())        //if ISBN are the same.
             {
-                cin >> item;
-                if(currItem.getISBN() == item.getISBN())        //if ISBN are the same.
-                {
-                    occur++;
-                }
-                else                                        //if not the same, print the information out.
-                {
-                    cout << "ISBN: " << currItem.getISBN() << " occurs " << occur << " times\n";
-                    currItem = item;                        //currItem store changed ISBN information
-                    occur = 1;                              //count from beginning.
-                }
-                --copy;                                     //reduce copy.
-                cout<<"debug "<<copy <<endl;
+                occur++;
             }
+            else                                        //if not the same, print the information out.
+            {
+                cout << "ISBN: " << currItem.getISBN() << " occurs " << occur << " times\n";
+                currItem = item;                        //currItem store changed ISBN information
+                occur = 1;                              //count from beginning.
+            }
+            --copy;                                     //reduce copy.
+  //          cout<<"debug "<<copy <<endl;
         }
-         cout << "ISBN: " << currItem.getISBN() << " occurs " << occur << " times\n";
     }
+        cout << "ISBN: " << currItem.getISBN() << " occurs " << occur << " times\n";
     
     
     
