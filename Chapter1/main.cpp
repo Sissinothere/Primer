@@ -3,7 +3,63 @@
 
 using namespace std;
 
-int main(){
+void section5_2()
+{
+    /*
+     Exercise 1.23: Write a program that reads several transactions and counts
+     how many transactions occur for each ISBN.
+     Exercise 1.24: Test the previous program by giving multiple transactions
+     representing multiple ISBNs. The records for each ISBN should be grouped
+     together.
+     */
+    
+    //does not work for mix isbn number. only work for gouped isbn number.
+
+    Sales_item currItem, item;
+    int copy;
+    int occur;      //how many time a ISBN occurs
+    
+    cout << "how many copies do you have? " <<endl;
+    cin >> copy;
+    
+    if(copy <= 0)
+    {
+        cout <<"copy cannot be <= 0" <<endl;
+    }
+    else
+    {
+        cout << "please enter ISBN number, quantity, price: ";
+        while(copy > 0)
+        {
+            cin >> currItem;            //first time record ISBN, use to compare ISBN with item
+            occur = 1;
+            --copy;
+            while(copy>0)          // second time record ISBN, compare with currItem.
+            {
+                cin >> item;
+                if(currItem.getISBN() == item.getISBN())        //if ISBN are the same.
+                {
+                    occur++;
+                }
+                else                                        //if not the same, print the information out.
+                {
+                    cout << "ISBN: " << currItem.getISBN() << " occurs " << occur << " times\n";
+                    currItem = item;                        //currItem store changed ISBN information
+                    occur = 1;                              //count from beginning.
+                }
+                --copy;                                     //reduce copy.
+                cout<<"debug "<<copy <<endl;
+            }
+        }
+         cout << "ISBN: " << currItem.getISBN() << " occurs " << occur << " times\n";
+    }
+    
+    
+    
+}
+
+void section5(){
+    
     //exercise 1.22
     /*
      Write a program that reads several transactions for the same
@@ -17,7 +73,7 @@ int main(){
     
     cout << "How many copies do you have? " <<endl;
     cin >> copy;
-
+    
     
     if(copy <= 0)
     {
@@ -60,9 +116,9 @@ int main(){
         
     }
     
-    return 0;
-}
 
+    
+}
 void section1_3(){
     int a = 9;
     int b = 10;
@@ -155,6 +211,7 @@ void section4(){
         cout << i <<endl;
     }
 }
+
 void section4_4(){
     cout<<"Please enter two integer number: ";
     int a,b;
@@ -185,4 +242,12 @@ void section4_4(){
         }cout<<endl;
     }
     
+}
+
+int main(){
+    
+  //  section5_1();
+    section5_2();
+    
+    return 0;
 }

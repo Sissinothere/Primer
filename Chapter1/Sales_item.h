@@ -35,6 +35,7 @@
 
 #include <iostream>
 #include <string>
+//usng namespace std;
 
 class Sales_item {
 friend bool operator==(const Sales_item&, const Sales_item&);
@@ -59,6 +60,8 @@ public:
         { return isbn == rhs.isbn; }
     // default constructor needed to initialize members of built-in type
     Sales_item(): units_sold(0), revenue(0.0) { }
+    
+    std::string getISBN();
 // private members as before
 private:
     std::string isbn;
@@ -138,6 +141,12 @@ double Sales_item::avg_price() const
     else 
         return 0;
 }
+
+inline
+std::string Sales_item::getISBN(){
+    return isbn;
+}
+
 
 
 #endif
