@@ -4,11 +4,62 @@
 using namespace std;
 
 int main(){
-
-    Sales_item item1,item2;
-    cin>> item1>>item2;
+    //exercise 1.22
+    /*
+     Write a program that reads several transactions for the same
+     ISBN. Write the sum of all the transactions that were read.
+     */
+    int copy;
+    Sales_item tempItem;
+    Sales_item sumItem;
+    bool sameISBM = true;
     
-    cout<<item1+item2 <<endl;
+    
+    cout << "How many copies do you have? " <<endl;
+    cin >> copy;
+
+    
+    if(copy <= 0)
+    {
+        cout <<"copy cannot be <= 0" <<endl;
+    }
+    
+    else
+    {
+        Sales_item *item = new Sales_item[copy];        // an array must be declare befor using it.
+        
+        for(int i = 0; i < copy ;i++)
+        {
+            cout << "please enter ISBN number, quantity, price: ";
+            cin >> tempItem;
+            item[i] = tempItem;
+        }
+        
+        //check if all the ISBN are the same
+        for(int i = 0; i < (copy-1); i++){
+            if(!item[i].same_isbn(item[i+1]))
+            {
+                cout << "please enter same ISBN number" <<endl; //if not the same
+                sameISBM = false;
+                break;
+            }
+        }
+        
+        //sum the value of the items
+        if(sameISBM)
+        {
+            for(int i = 0; i < copy; i++)
+            {
+                sumItem += item[i];
+                
+            }
+            delete[] item;      //deleted array CANNOT do delete item[];
+            
+            cout << "Totle: " << sumItem;
+        }
+        
+    }
+    
     return 0;
 }
 
